@@ -1,0 +1,8 @@
+.game-board{
+    display: flex;
+    width: fit-content;
+}
+
+p{
+    text-align: center;
+}

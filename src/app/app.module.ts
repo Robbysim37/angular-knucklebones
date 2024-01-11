@@ -10,6 +10,7 @@ import { CellComponent } from './game-state/game-board/board-column/cell/cell.co
 import { PlayerColumnComponent } from './game-state/player-column/player-column.component';
 import { IconComponent } from './game-state/player-column/icon/icon.component';
 import { TotalScoreComponent } from './game-state/player-column/total-score/total-score.component';
+import { HighlightDirective } from './highlight.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TotalScoreComponent } from './game-state/player-column/total-score/tota
     CellComponent,
     PlayerColumnComponent,
     IconComponent,
-    TotalScoreComponent
+    TotalScoreComponent,
+    HighlightDirective
   ],
   imports: [
     BrowserModule,
