@@ -7,4 +7,8 @@ import { Component,Input } from '@angular/core';
 })
 export class CellComponent {
   @Input() diceValue: number = 0;
+
+  increaseValue = () => {
+    this.diceValue++
+  }
 }
