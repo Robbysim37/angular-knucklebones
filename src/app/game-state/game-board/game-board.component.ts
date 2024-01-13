@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-game-board',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './game-board.component.css'
 })
 export class GameBoardComponent {
-
+  @Input() gameBoardData:Array<Array<number>> = [];
 }

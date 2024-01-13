@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,Input } from '@angular/core';
 
 @Component({
   selector: 'app-cell',
@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './cell.component.css'
 })
 export class CellComponent {
-
+  @Input() diceValue: number = 0;
 }
