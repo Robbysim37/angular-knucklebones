@@ -1,6 +1,9 @@
 div{
     height: 10vh;
     width: 10vh;
-    border: solid 2px ;
+    border: solid 2px;
     margin: 1vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
