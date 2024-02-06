@@ -11,6 +11,7 @@ import { PlayerColumnComponent } from './game-state/player-column/player-column.
 import { IconComponent } from './game-state/player-column/icon/icon.component';
 import { TotalScoreComponent } from './game-state/player-column/total-score/total-score.component';
 import { HighlightDirective } from './highlight.directive';
+import { RollButtonComponent } from './game-state/player-column/roll-button/roll-button.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HighlightDirective } from './highlight.directive';
     PlayerColumnComponent,
     IconComponent,
     TotalScoreComponent,
-    HighlightDirective
+    HighlightDirective,
+    RollButtonComponent
   ],
   imports: [
     BrowserModule,

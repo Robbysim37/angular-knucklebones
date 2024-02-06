@@ -1,14 +1,14 @@
 <div class="game-board">
     <div class="column-group">    
         <p>Test</p>
-        <app-board-column [boardColumnData]="gameBoardData[0]"></app-board-column>
+        <app-board-column [boardColumnData]="gameState.getGameBoard()[0]"></app-board-column>
     </div>
     <div class="column-group">    
         <p>Test</p>
-        <app-board-column [boardColumnData]="gameBoardData[1]"></app-board-column>
+        <app-board-column [boardColumnData]="gameState.getGameBoard()[1]"></app-board-column>
     </div>
     <div class="column-group">    
         <p>Test</p>
-        <app-board-column [boardColumnData]="gameBoardData[2]"></app-board-column>
+        <app-board-column [boardColumnData]="gameState.getGameBoard()[2]"></app-board-column>
     </div>
 </div>
