@@ -1,15 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { GameState } from '../gameState.service';
 
 @Component({
   selector: 'app-game-state',
   templateUrl: './game-state.component.html',
-  styleUrl: './game-state.component.css'
+  styleUrl: './game-state.component.css',
+  providers: [GameState]
 })
-export class GameStateComponent {
-  gameBoard = [
-    [1,2,3],
-    [4,5,6],
-    [7,8,9]
-  ]
-  currDiceValue:number = 0
+export class GameStateComponent implements OnInit {
+
+  constructor(private gameState:GameState) {}
+
+  ngOnInit(): void {
+      this.gameState = this.gameState
+  }
 }

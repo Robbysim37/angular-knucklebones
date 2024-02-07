@@ -5,10 +5,18 @@ export class GameState {
         [7,8,9]
     ]
 
-    //change the following function to double and triple dice values when calculating score
+    private currDiceValue:number | null = null;
 
     getGameBoard = () => {
         return this.gameBoard
+    }
+
+    getCurrDiceValue = () => {
+        return this.currDiceValue
+    }
+
+    setCurrDiceValue = (wipeValue:boolean) => {
+       wipeValue == true ? this.currDiceValue = null : this.currDiceValue = Math.ceil(Math.random() * 6)
     }
 
     getColumnScore = (column:0|1|2) => {
