@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameState } from '../../gameState.service';
 
 @Component({
   selector: 'app-player-column',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './player-column.component.css'
 })
 export class PlayerColumnComponent {
-  diceDisplay:number = 0
+  
 }
