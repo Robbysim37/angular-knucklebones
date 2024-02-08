@@ -5,17 +5,15 @@ import { GameState } from '../../gameState.service';
 @Component({
   selector: 'app-game-board',
   templateUrl: './game-board.component.html',
-  styleUrl: './game-board.component.css',
-  providers:[GameState]
+  styleUrl: './game-board.component.css'
 })
 export class GameBoardComponent implements OnInit {
-  @Input() gameBoardData:Array<Array<number>> = [];
-
-  gameState = new GameState();
 
   constructor(private gameState:GameState){}
 
   ngOnInit(): void {
       console.log(this.gameState.getColumnScore(0))
   }
+
+  gameBoard = this.gameState.getGameBoard()
 }

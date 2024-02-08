@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { GameState } from '../../../gameState.service';
 
 @Component({
   selector: 'app-roll-button',
@@ -7,7 +8,9 @@ import { Component } from '@angular/core';
 })
 export class RollButtonComponent {
 
+  constructor(private gameState:GameState){}
+
   rollDice = () => {
-    console.log(Math.ceil(Math.random() * 6))
+    this.gameState.setCurrDiceValue(false)
   }
 }

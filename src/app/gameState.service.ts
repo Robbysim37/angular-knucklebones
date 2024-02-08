@@ -5,7 +5,7 @@ export class GameState {
         [7,8,9]
     ]
 
-    private currDiceValue:number | null = null;
+    private currDiceValue:number | null = 1;
 
     getGameBoard = () => {
         return this.gameBoard
@@ -16,7 +16,9 @@ export class GameState {
     }
 
     setCurrDiceValue = (wipeValue:boolean) => {
-       wipeValue == true ? this.currDiceValue = null : this.currDiceValue = Math.ceil(Math.random() * 6)
+        console.log("hits the setter")
+        wipeValue == true ? this.currDiceValue = null : this.currDiceValue = Math.ceil(Math.random() * 6)
+        console.log(this.currDiceValue)
     }
 
     getColumnScore = (column:0|1|2) => {
