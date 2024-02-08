@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges,ViewChild } from '@angular/core';
 import { GameState } from '../../gameState.service';
 
 @Component({
@@ -6,6 +6,13 @@ import { GameState } from '../../gameState.service';
   templateUrl: './player-column.component.html',
   styleUrl: './player-column.component.css'
 })
-export class PlayerColumnComponent {
+export class PlayerColumnComponent implements OnInit{
+
+  constructor(private gameState:GameState){}
+
+  @ViewChild('test') currDiceValue = this.gameState.getCurrDiceValue()
   
+  ngOnInit(): void {
+      console.log(this.currDiceValue)
+  }
 }
