@@ -1,4 +1,8 @@
+import { EventEmitter } from "@angular/core";
+
 export class GameState {
+
+    public DieWasRolled: EventEmitter<number | null> = new EventEmitter;
     private gameBoard = [
         [6,6,6],
         [4,5,6],
@@ -19,6 +23,7 @@ export class GameState {
         console.log("hits the setter")
         wipeValue == true ? this.currDiceValue = null : this.currDiceValue = Math.ceil(Math.random() * 6)
         console.log(this.currDiceValue)
+        this.DieWasRolled.emit(this.currDiceValue);
     }
 
     getColumnScore = (column:0|1|2) => {
