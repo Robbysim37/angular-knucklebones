@@ -7,11 +7,8 @@ import { GameState } from '../gameState.service';
   styleUrl: './game-state.component.css',
   providers: [GameState]
 })
-export class GameStateComponent implements OnInit {
+export class GameStateComponent {
 
   constructor(private gameState:GameState) {}
 
-  ngOnInit(): void {
-      this.gameState = this.gameState
-  }
 }

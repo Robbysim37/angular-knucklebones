@@ -7,13 +7,9 @@ import { GameState } from '../../gameState.service';
   templateUrl: './game-board.component.html',
   styleUrl: './game-board.component.css'
 })
-export class GameBoardComponent implements OnInit {
+export class GameBoardComponent {
 
   constructor(private gameState:GameState){}
 
-  ngOnInit(): void {
-      console.log(this.gameState.getColumnScore(0))
-  }
-
-  gameBoard = this.gameState.getGameBoard()
+  gameBoard = this.gameState.getPlayerBoard()
 }

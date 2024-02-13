@@ -1,33 +1,31 @@
 import { EventEmitter } from "@angular/core";
 
-export class GameState {
 
-    public DieWasRolled: EventEmitter<number | null> = new EventEmitter;
-    private gameBoard = [
-        [6,6,6],
-        [4,5,6],
-        [7,8,9]
+
+
+
+interface PositionObj {
+    x: 0 | 1 | 2,
+    y: 0 | 1 | 2
+}
+
+class GameBoard {
+
+    private board:number[][] = [
+        [],
+        [],
+        []
     ]
 
-    private currDiceValue:number | null = 1;
-
-    getGameBoard = () => {
-        return this.gameBoard
+    getBoard = () => {
+        return this.board
     }
-
-    getCurrDiceValue = () => {
-        return this.currDiceValue
-    }
-
-    setCurrDiceValue = (wipeValue:boolean) => {
-        console.log("hits the setter")
-        wipeValue == true ? this.currDiceValue = null : this.currDiceValue = Math.ceil(Math.random() * 6)
-        console.log(this.currDiceValue)
-        this.DieWasRolled.emit(this.currDiceValue);
+    setBoard = (pos:PositionObj,newValue:number) => {
+        this.board[pos.x][pos.y] = newValue
     }
 
     getColumnScore = (column:0|1|2) => {
-        return this.gameBoard[column].reduce((accu, curr, i, arr) => {
+        return this.getBoard()[column].reduce((accu, curr, i, arr) => {
             return accu + (curr * arr.filter(number => number == curr).length)
         },0)
     }
@@ -36,5 +34,61 @@ export class GameState {
         return this.getColumnScore(0)
         + this.getColumnScore(1)
         + this.getColumnScore(2)
+    }
+}
+
+
+
+
+export class GameState {
+
+    public DieWasRolled: EventEmitter<number | null> = new EventEmitter;
+
+    private currentTurn:"player" | "computer" = "player"
+
+    private currDiceValue:number | null = null;
+
+    private playerBoard = new GameBoard()
+    private computerBoard = new GameBoard()
+
+    getPlayerBoard = () => {
+        return this.playerBoard.getBoard()
+    }
+
+    getComputerBoard = () => {
+        return this.computerBoard.getBoard()
+    }
+
+    setPlayerBoard = (pos:PositionObj,newValue:number) => {
+        this.playerBoard.setBoard(pos,newValue)
+    }
+
+    setComputerBoard = (pos:PositionObj,newValue:number) => {
+        this.computerBoard.setBoard(pos,newValue)
+    }
+
+    getCurrDiceValue = () => {
+        return this.currDiceValue
+    }
+
+    setCurrDiceValue = (wipeValue:boolean) => {
+        wipeValue == true ? this.currDiceValue = null : this.currDiceValue = Math.ceil(Math.random() * 6)
+        this.DieWasRolled.emit(this.currDiceValue);
+    }
+
+    getPlayerColumnScore = (col:0|1|2) => {
+        return this.playerBoard.getColumnScore(col)
+    }
+
+    getComputerColumnScore = (col:0|1|2) => {
+        return this.computerBoard.getColumnScore(col)
+    }
+
+    getTotalPlayerScore = () => {
+        return this.playerBoard.getTotalScore()
+    }
+
+    getTotalComputerScore = () => {
+        return this.computerBoard.getTotalScore()
     }
 }
