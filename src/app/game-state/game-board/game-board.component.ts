@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { GameState } from '../../gameState.service';
 
@@ -10,6 +10,8 @@ import { GameState } from '../../gameState.service';
 export class GameBoardComponent {
 
   constructor(private gameState:GameState){}
+
+  @Input() player: "human" | "computer" = "human"
 
   state = this.gameState
 }

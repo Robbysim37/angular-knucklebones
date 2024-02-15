@@ -1,8 +1,22 @@
 <div class="game-board">
-    @for(column of state.getPlayerBoard();track index;let index = $index) {
-        <div class="column-group">    
-            <p>{{state.getPlayerColumnScore(index)}}</p>
-            <app-board-column [column]="index" [boardColumnData]="column"></app-board-column>
-        </div>
+
+    @if(player === "human"){
+        @for(column of state.getHumanBoard();track index;let index = $index) {
+            <div class="column-group">    
+                <p>{{state.getHumanColumnScore(index)}}</p>
+                <app-board-column [player]="player" 
+                [column]="index" 
+                [boardColumnData]="column"></app-board-column>
+            </div>
+        }
+    }@else{
+        @for(column of state.getComputerBoard();track index;let index = $index) {
+            <div class="column-group">
+                <app-board-column [player]="player" 
+                [column]="index" 
+                [boardColumnData]="column"></app-board-column>
+                <p>{{state.getComputerColumnScore(index)}}</p>
+            </div>
+        }
     }
 </div>
