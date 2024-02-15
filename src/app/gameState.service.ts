@@ -41,28 +41,32 @@ class GameBoard {
 export class GameState {
 
     public DieWasRolled: EventEmitter<number | null> = new EventEmitter;
+    public ScoreUpdate: EventEmitter<number> = new EventEmitter;
 
-    private currentTurn:"player" | "computer" = "player"
+    public UpdateState: EventEmitter<GameState> = new EventEmitter;
+
+    private currentTurn:"human" | "computer" = "human"
 
     private currDiceValue:number | null = null;
 
-    private playerBoard = new GameBoard()
+    private humanBoard = new GameBoard()
     private computerBoard = new GameBoard()
 
-    getPlayerBoard = () => {
-        return this.playerBoard.getBoard()
+    getHumanBoard = () => {
+        return this.humanBoard.getBoard()
     }
 
     getComputerBoard = () => {
         return this.computerBoard.getBoard()
     }
 
-    setPlayerBoard = (column:number) => {
-        this.playerBoard.setBoard(column,this.currDiceValue)
+    setHumanBoard = (column:number) => {
+        this.humanBoard.setBoard(column,this.currDiceValue)
+        this.UpdateState.emit(this)
     }
 
-    setComputerBoard = (column:number,newValue:number) => {
-        this.computerBoard.setBoard(column,newValue)
+    setComputerBoard = (column:number) => {
+        this.computerBoard.setBoard(column,this.currDiceValue)
     }
 
     getCurrDiceValue = () => {
@@ -71,19 +75,19 @@ export class GameState {
 
     setCurrDiceValue = (wipeValue:boolean) => {
         wipeValue == true ? this.currDiceValue = null : this.currDiceValue = Math.ceil(Math.random() * 6)
-        this.DieWasRolled.emit(this.currDiceValue);
+        this.UpdateState.emit(this);
     }
 
-    getPlayerColumnScore = (col:number) => {
-        return this.playerBoard.getColumnScore(col)
+    getHumanColumnScore = (col:number) => {
+        return this.humanBoard.getColumnScore(col)
     }
 
     getComputerColumnScore = (col:number) => {
         return this.computerBoard.getColumnScore(col)
     }
 
-    getTotalPlayerScore = () => {
-        return this.playerBoard.getTotalScore()
+    getTotalHumanScore = () => {
+        return this.humanBoard.getTotalScore()
     }
 
     getTotalComputerScore = () => {

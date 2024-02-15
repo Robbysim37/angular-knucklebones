@@ -12,9 +12,15 @@ export class BoardColumnComponent {
 
   @Input() boardColumnData: Array<number> = []
   @Input() column:number = 0
+  @Input() player:"human" | "computer" = "human"
 
-  placeDice = () => {
-    this.gameState.setPlayerBoard(this.column)
-    this.gameState.setCurrDiceValue(true)
+  placeDice = (player:"human" | "computer") => {
+    if(player === "human"){
+      this.gameState.setHumanBoard(this.column)
+      this.gameState.setCurrDiceValue(true)
+    }else{
+      this.gameState.setComputerBoard(this.column)
+      this.gameState.setCurrDiceValue(true)
+    }
   }
 }
