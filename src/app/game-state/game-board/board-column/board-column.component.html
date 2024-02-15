@@ -1,3 +1,5 @@
-<app-cell [diceValue]="boardColumnData[0]"></app-cell>
-<app-cell [diceValue]="boardColumnData[1]"></app-cell>
-<app-cell [diceValue]="boardColumnData[2]"></app-cell>
+<div (click)="placeDice()">
+    <app-cell [diceValue]="boardColumnData[0]"></app-cell>
+    <app-cell [diceValue]="boardColumnData[1]"></app-cell>
+    <app-cell [diceValue]="boardColumnData[2]"></app-cell>
+</div>

@@ -1,14 +1,8 @@
 <div class="game-board">
-    <div class="column-group">    
-        <p>Test</p>
-        <app-board-column [boardColumnData]="gameBoard[0]"></app-board-column>
-    </div>
-    <div class="column-group">    
-        <p>Test</p>
-        <app-board-column [boardColumnData]="gameBoard[1]"></app-board-column>
-    </div>
-    <div class="column-group">    
-        <p>Test</p>
-        <app-board-column [boardColumnData]="gameBoard[2]"></app-board-column>
-    </div>
+    @for(column of state.getPlayerBoard();track index;let index = $index) {
+        <div class="column-group">    
+            <p>{{state.getPlayerColumnScore(index)}}</p>
+            <app-board-column [column]="index" [boardColumnData]="column"></app-board-column>
+        </div>
+    }
 </div>

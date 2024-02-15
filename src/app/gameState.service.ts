@@ -4,10 +4,6 @@ import { EventEmitter } from "@angular/core";
 
 
 
-interface PositionObj {
-    x: 0 | 1 | 2,
-    y: 0 | 1 | 2
-}
 
 class GameBoard {
 
@@ -20,11 +16,13 @@ class GameBoard {
     getBoard = () => {
         return this.board
     }
-    setBoard = (pos:PositionObj,newValue:number) => {
-        this.board[pos.x][pos.y] = newValue
+    setBoard = (column:number,newValue:number | null) => {
+        if(newValue !== null){
+            this.board[column].push(newValue)
+        }
     }
 
-    getColumnScore = (column:0|1|2) => {
+    getColumnScore = (column:number) => {
         return this.getBoard()[column].reduce((accu, curr, i, arr) => {
             return accu + (curr * arr.filter(number => number == curr).length)
         },0)
@@ -59,12 +57,12 @@ export class GameState {
         return this.computerBoard.getBoard()
     }
 
-    setPlayerBoard = (pos:PositionObj,newValue:number) => {
-        this.playerBoard.setBoard(pos,newValue)
+    setPlayerBoard = (column:number) => {
+        this.playerBoard.setBoard(column,this.currDiceValue)
     }
 
-    setComputerBoard = (pos:PositionObj,newValue:number) => {
-        this.computerBoard.setBoard(pos,newValue)
+    setComputerBoard = (column:number,newValue:number) => {
+        this.computerBoard.setBoard(column,newValue)
     }
 
     getCurrDiceValue = () => {
@@ -76,11 +74,11 @@ export class GameState {
         this.DieWasRolled.emit(this.currDiceValue);
     }
 
-    getPlayerColumnScore = (col:0|1|2) => {
+    getPlayerColumnScore = (col:number) => {
         return this.playerBoard.getColumnScore(col)
     }
 
-    getComputerColumnScore = (col:0|1|2) => {
+    getComputerColumnScore = (col:number) => {
         return this.computerBoard.getColumnScore(col)
     }
 
