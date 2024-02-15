@@ -13,7 +13,6 @@ export class PlayerColumnComponent implements OnInit, OnDestroy{
   currDiceValue = this.gameState.getCurrDiceValue()
   
   ngOnInit(): void {
-      console.log(this.currDiceValue)
       this.gameState.DieWasRolled.subscribe((die) => this.currDiceValue = die);
   }
 
