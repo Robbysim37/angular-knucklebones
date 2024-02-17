@@ -10,14 +10,17 @@ export class PlayerColumnComponent implements OnInit, OnDestroy{
 
   constructor(private gameState:GameState){}
 
-  state = this.gameState
+  currDice = this.gameState.getCurrDiceValue()
+  totalScore = this.gameState.getTotalHumanScore()
+
   
   ngOnInit(): void {
-      this.gameState.UpdateState.subscribe((newState) => this.state = newState);
-      
+      this.gameState.DieWasRolled.subscribe((newDice) => this.currDice = newDice);
+      this.gameState.ScoreUpdate.subscribe((newScore) => this.totalScore = newScore);
   }
 
   ngOnDestroy(): void {
-      this.gameState.UpdateState.unsubscribe()
+      this.gameState.DieWasRolled.unsubscribe();
+      this.gameState.ScoreUpdate.unsubscribe();
   }
 }
