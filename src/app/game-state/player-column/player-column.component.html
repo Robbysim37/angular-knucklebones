@@ -1,3 +1,7 @@
-<app-roll-button></app-roll-button>
-<div>{{currDice}}</div>
-<div>Total Score: {{totalScore}}</div>
+@if(player === "human"){
+    <app-roll-button></app-roll-button>
+    <div>{{currDice}}</div>
+    <div>Total Score: {{totalScore}}</div>
+}@else {
+    <div>Computer Score: {{totalScore}}</div>
+}
