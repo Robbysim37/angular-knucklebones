@@ -69,6 +69,7 @@ export class GameState {
 
     public DieWasRolled: EventEmitter<number | null> = new EventEmitter;
     public ScoreUpdate: EventEmitter<number> = new EventEmitter;
+    public ComputerScoreUpdate: EventEmitter<number> = new EventEmitter;
 
     private currentTurn:"human" | "computer" = "human"
 
@@ -97,6 +98,7 @@ export class GameState {
     setComputerBoard = (column:number) => {
         this.computerBoard.setBoard(column,this.currDiceValue)
         this.destroyOpponentsDice(false,column)
+        this.ComputerScoreUpdate.emit(this.getTotalComputerScore())
     }
 
     getCurrDiceValue = () => {
