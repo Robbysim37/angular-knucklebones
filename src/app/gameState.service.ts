@@ -98,6 +98,9 @@ export class GameState {
     setComputerBoard = (column:number) => {
         this.computerBoard.setBoard(column,this.currDiceValue)
         this.destroyOpponentsDice(false,column)
+        if(this.computerBoard.checkIfFull()){
+            alert(` Human Score:${this.humanBoard.getTotalScore()} - Computer Score:${this.computerBoard.getTotalScore()}`)
+        }
         this.ComputerScoreUpdate.emit(this.getTotalComputerScore())
     }
 

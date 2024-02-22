@@ -17,9 +17,11 @@ export class BoardColumnComponent {
   placeDice = (player:"human" | "computer") => {
     if(player === "human"){
       if(this.boardColumnData.length < 3){
-      this.gameState.setHumanBoard(this.column)
-      this.gameState.setCurrDiceValue(true)
-      this.gameState.computerPlays()
+        this.gameState.setHumanBoard(this.column)
+        this.gameState.setCurrDiceValue(true)
+        setTimeout(() => {
+          this.gameState.computerPlays()
+        },1500)
       }
     }
   }
