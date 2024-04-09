@@ -1,0 +1,15 @@
+div{
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inv{
+    height: 10vh;
+    width: 10vh;
+}
+
+p{
+    font-size: 2rem;
+}

@@ -15,7 +15,7 @@ export class BoardColumnComponent {
   @Input() player:"human" | "computer" = "human"
 
   placeDice = (player:"human" | "computer") => {
-    if(player === "human"){
+    if(player === "human" && this.gameState.getCurrDiceValue()){
       if(this.boardColumnData.length < 3){
         this.gameState.setHumanBoard(this.column)
         this.gameState.setCurrDiceValue(true)

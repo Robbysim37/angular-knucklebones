@@ -1,1 +1,8 @@
-<button (click)="rollDice()">Roll Dice</button>
+@if (currDice) {
+    <div appHighlight>
+        <img [src]="imgPath">
+    </div>
+}
+@else {
+    <div appHighlight (click)="rollDice()">Roll Dice</div>
+}
